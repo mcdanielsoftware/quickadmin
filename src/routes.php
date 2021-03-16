@@ -5,6 +5,7 @@
  */
 
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Laraveldaily\Quickadmin\Models\Menu;
 
 if (config('quickadmin.standaloneRoutes')) {
@@ -26,15 +27,15 @@ if (Schema::hasTable('menus')) {
                     case 1:
                         Route::post(strtolower($menu->name) . '/massDelete', [
                             'as'   => strtolower($menu->name) . '.massDelete',
-                            'uses' => 'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller@massDelete'
+                            'uses' => 'Admin\\' . ucfirst(Str::camel($menu->name)) . 'Controller@massDelete'
                         ]);
                         Route::resource(strtolower($menu->name),
-                            'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller', ['except' => 'show']);
+                            'Admin\\' . ucfirst(Str::camel($menu->name)) . 'Controller', ['except' => 'show']);
                         break;
                     case 3:
                         Route::get(strtolower($menu->name), [
                             'as'   => strtolower($menu->name) . '.index',
-                            'uses' => 'Admin\\' . ucfirst(camel_case($menu->name)) . 'Controller@index',
+                            'uses' => 'Admin\\' . ucfirst(Str::camel($menu->name)) . 'Controller@index',
                         ]);
                         break;
                 }

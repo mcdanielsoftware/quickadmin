@@ -230,7 +230,7 @@ class QuickadminMenuController extends Controller
             'position'  => 0,
             'menu_type' => 2,
             'icon'      => $request->icon != '' ? $request->icon : 'fa-database',
-            'name'      => ucfirst(camel_case($request->title)),
+            'name'      => ucfirst(Str::camel($request->title)),
             'title'     => $request->title,
             'parent_id' => null,
         ]);
